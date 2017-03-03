@@ -31,16 +31,15 @@ class App extends Component {
   }
 
   handleCheck(id) {
-    let currentItems = [...this.state.items];
+    let currentItems = JSON.parse(JSON.stringify(this.state.items));
     var currentId = id - 1
     var currentItem = currentItems[currentId];
-    console.log(currentItem);
-    // currentItems[id - 1].completed = true;
-    // this.setState({items: currentItems});
+    currentItems[id - 1].completed = !currentItems[id - 1].completed
+    this.setState({items: currentItems});
   }
 
   renderItems() {
-    return this.state.items.map((item, i) => <ListItem key={item.id} changeStatus={this.handleCheck.bind(this)} todoItem={item}/>)
+    return this.state.items.map((item, i) => <ListItem key={item.id} changeStatus={(id) => this.handleCheck(id) } todoItem={item}/>)
   }
 
   render() {
