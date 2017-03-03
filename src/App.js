@@ -34,9 +34,10 @@ class App extends Component {
     let currentItems = JSON.parse(JSON.stringify(this.state.items));
     var currentId = id - 1
     var currentItem = currentItems[currentId];
-    currentItems[id - 1].completed = !currentItems[id - 1].completed
+    currentItem.completed = !currentItem.completed
     this.setState({items: currentItems});
   }
+  
 
   renderItems() {
     return this.state.items.map((item, i) => <ListItem key={item.id} changeStatus={(id) => this.handleCheck(id) } todoItem={item}/>)
